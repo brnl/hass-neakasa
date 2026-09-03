@@ -5,32 +5,46 @@ on:
     types:
       - published
 
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # needed to attach the zip as a release asset
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          persist-credentials: false
+
       - name: Get integration information
         id: information
         run: |
-          name=$(find custom_components/ -type d -maxdepth 1 | tail -n 1 | cut -d "/" -f2)
-          echo "name=$name" >> $GITHUB_OUTPUT
+          domain=$(yq -o=yaml '.domain' custom_components/*/manifest.json)
+          echo "name=$domain" >> "$GITHUB_OUTPUT"
+
       - name: Adjust version number
-        if: ${{ github.event_name == 'release' }}
-        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
-          yq -i -o json '.version="${{ github.event.release.tag_name }}"' \
-            "${{ github.workspace }}/custom_components/${{ steps.information.outputs.name }}/manifest.json"
+          yq -i -o json '.version = strenv(RELEASE_TAG)' \
+            "custom_components/${{ steps.information.outputs.name }}/manifest.json"
+
       - name: Create zip file for the integration
-        shell: bash
         run: |
-          cd "${{ github.workspace }}/custom_components/${{ steps.information.outputs.name }}"
-          zip ${{ steps.information.outputs.name }}.zip -r ./
+          cd "custom_components/${{ steps.information.outputs.name }}"
+          zip -r "${{ steps.information.outputs.name }}.zip" ./ \
+            -x '*.pyc' -x '*__pycache__*' -x '*.zip'
+
       - name: Upload the zipfile as a release asset
-        uses: softprops/action-gh-release@v2
-        if: ${{ github.event_name == 'release' }}
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64  # v3.0.3
         with:
-          files: ${{ github.workspace }}/custom_components/${{ steps.information.outputs.name }}/${{ steps.information.outputs.name }}.zip
+          files: custom_components/${{ steps.information.outputs.name }}/${{ steps.information.outputs.name }}.zip
           tag_name: ${{ github.event.release.tag_name }}

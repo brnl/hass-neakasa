@@ -1,4 +1,4 @@
-name: Validate with hassfest
+name: HACS Action
 
 on:
   push:
@@ -6,12 +6,14 @@ on:
     paths:
       - "custom_components/**"
       - "hacs.json"
-      - ".github/workflows/hassfest.yaml"
+      - "README.md"
+      - ".github/workflows/hacs.yaml"
   pull_request:
     paths:
       - "custom_components/**"
       - "hacs.json"
-      - ".github/workflows/hassfest.yaml"
+      - "README.md"
+      - ".github/workflows/hacs.yaml"
   schedule:
     - cron: "0 0 * * *"
 
@@ -19,12 +21,15 @@ permissions:
   contents: read
 
 jobs:
-  validate:
+  hacs:
+    name: HACS Action
     runs-on: "ubuntu-latest"
+    if: github.event_name != 'push' || github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
         with:
           persist-credentials: false
-      # home-assistant/actions is untagged; upstream docs use @master. Pinned to a
-      # commit for supply-chain safety — bump this SHA manually when needed.
-      - uses: home-assistant/actions/hassfest@a7c616ce81ccda50150bf1595786c71b1883fabb
+      - name: HACS Action
+        uses: hacs/action@d556e736723344f83838d08488c983a15381059a  # 22.5.0
+        with:
+          category: "integration"

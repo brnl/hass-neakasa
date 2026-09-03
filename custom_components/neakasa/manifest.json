@@ -1,14 +1,14 @@
 {
   "domain": "neakasa",
   "name": "Neakasa",
-  "codeowners": ["@timniklas"],
+  "codeowners": ["@brnl"],
   "config_flow": true,
-  "documentation": "https://github.com/timniklas/hass-neakasa",
+  "documentation": "https://github.com/brnl/hass-neakasa",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/timniklas/hass-neakasa/issues",
+  "issue_tracker": "https://github.com/brnl/hass-neakasa/issues",
   "requirements": [
     "alibabacloud_iot_api_gateway",
     "alibabacloud_tea_util"
   ],
-  "version": "0.0.0"
+  "version": "1.3.0"
 }

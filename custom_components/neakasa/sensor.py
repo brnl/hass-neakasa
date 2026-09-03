@@ -149,6 +149,8 @@ class NeakasaMapSensor(CoordinatorEntity):
     @property
     def state(self):
         rawValue = getattr(self.coordinator.data, self.data_key)
+        if rawValue is None:
+            return None
         if rawValue >= len(self.key_options):
             return rawValue
 

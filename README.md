@@ -1,11 +1,18 @@
 # Neakasa Integration for Home Assistant 🏠
 
-[![GitHub Release](https://img.shields.io/github/v/release/timniklas/hass-neakasa?sort=semver&style=for-the-badge&color=green)](https://github.com/timniklas/hass-neakasa/releases/)
-[![GitHub Release Date](https://img.shields.io/github/release-date/timniklas/hass-neakasa?style=for-the-badge&color=green)](https://github.com/timniklas/hass-neakasa/releases/)
-![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/timniklas/hass-neakasa/latest/total?style=for-the-badge&label=Downloads%20latest%20Release)
+[![GitHub Release](https://img.shields.io/github/v/release/brnl/hass-neakasa?sort=semver&style=for-the-badge&color=green)](https://github.com/brnl/hass-neakasa/releases/)
+[![GitHub Release Date](https://img.shields.io/github/release-date/brnl/hass-neakasa?style=for-the-badge&color=green)](https://github.com/brnl/hass-neakasa/releases/)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/brnl/hass-neakasa/latest/total?style=for-the-badge&label=Downloads%20latest%20Release)
 ![HA Analytics](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fanalytics.home-assistant.io%2Fcustom_integrations.json&query=%24.neakasa.total&style=for-the-badge&label=Active%20Installations&color=red)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/timniklas/hass-neakasa?style=for-the-badge)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/brnl/hass-neakasa?style=for-the-badge)
 [![hacs](https://img.shields.io/badge/HACS-Integration-blue.svg?style=for-the-badge)](https://github.com/hacs/integration)
+
+> **Community-maintained fork.** This is a continuation of the original
+> [`timniklas/hass-neakasa`](https://github.com/timniklas/hass-neakasa) integration
+> (no longer available upstream). All credit for the original work goes to
+> [@timniklas](https://github.com/timniklas) and the original contributors.
+> Install it via HACS as a **custom repository** (see below) — it is not in the
+> default HACS store.
 
 ## Overview
 
@@ -53,14 +60,14 @@ The Neakasa Home Assistant Custom Integration allows you to integrate your Neaka
 
 ### HACS (recommended)
 
-This integration is available in HACS (Home Assistant Community Store).
+This fork is installed as a HACS **custom repository** (it is not in the default HACS store).
 
 1. Install HACS if you don't have it already
 2. Open HACS in Home Assistant
 3. Go to any of the sections (integrations, frontend, automation).
 4. Click on the 3 dots in the top right corner.
 5. Select "Custom repositories"
-6. Add following URL to the repository `https://github.com/timniklas/hass-neakasa`.
+6. Add following URL to the repository `https://github.com/brnl/hass-neakasa`.
 7. Select Integration as category.
 8. Click the "ADD" button
 9. Search for "Neakasa"
@@ -69,12 +76,12 @@ This integration is available in HACS (Home Assistant Community Store).
 ### Manual installation
 
 #### from downloaded zip archive
-To install this integration manually you have to download [_neakasa.zip_](https://github.com/timniklas/hass-neakasa/releases/latest/) and extract its contents to `config/custom_components/neakasa` directory:
+To install this integration manually you have to download [_neakasa.zip_](https://github.com/brnl/hass-neakasa/releases/latest/) and extract its contents to `config/custom_components/neakasa` directory:
 
 ```bash
 mkdir -p custom_components/neakasa
 cd custom_components/neakasa
-wget https://github.com/timniklas/hacs_blitzerde/releases/latest/download/neakasa.zip
+wget https://github.com/brnl/hass-neakasa/releases/latest/download/neakasa.zip
 unzip neakasa.zip
 rm neakasa.zip
 ```
@@ -88,7 +95,7 @@ with this variant, you can easily update the integration from the github reposit
 
 ```bash
 cd <to your Home Assistant config directory>
-git clone https://github.com/timniklas/hass-neakasa
+git clone https://github.com/brnl/hass-neakasa
 mkdir custom_components
 cd custom_components
 ln -s ../hass-neakasa/custom_components/neakasa/ .

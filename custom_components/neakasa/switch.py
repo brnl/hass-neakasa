@@ -41,7 +41,6 @@ async def async_setup_entry(
     # to a list for each one.
     # This maybe different in your specific case, depending on how your data is structured
     sensors = [
-        NeakasaSwitch(coordinator, device_info, translation="auto_clean", key="cleanCfg", subkey="active", icon="mdi:vacuum"),
         NeakasaSwitch(coordinator, device_info, translation="young_cat_mode", key="youngCatMode", visible=False, icon="mdi:cat"),
         NeakasaSwitch(coordinator, device_info, translation="child_lock", key="childLockOnOff", icon="mdi:lock-alert"),
         NeakasaSwitch(coordinator, device_info, translation="auto_bury", key="autoBury", icon="mdi:window-closed"),
@@ -50,6 +49,11 @@ async def async_setup_entry(
         NeakasaSwitch(coordinator, device_info, translation="auto_recovery", key="autoForceInit", visible=False, icon="mdi:alert-outline"),
         NeakasaSwitch(coordinator, device_info, translation="unstoppable_cycle", key="bIntrptRangeDet", icon="mdi:cached")
     ]
+
+    # The "auto clean" switch is backed by cleanCfg, which the cloud API only
+    # returns for some models/firmware. Only expose it when the data is present.
+    if coordinator.data.cleanCfg:
+        sensors.insert(0, NeakasaSwitch(coordinator, device_info, translation="auto_clean", key="cleanCfg", subkey="active", icon="mdi:vacuum"))
 
     # Create the sensors.
     async_add_entities(sensors)

@@ -7,10 +7,12 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/brnl/hass-neakasa?style=for-the-badge)
 [![hacs](https://img.shields.io/badge/HACS-Integration-blue.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
-> **Community-maintained fork.** This is a continuation of the original
-> [`timniklas/hass-neakasa`](https://github.com/timniklas/hass-neakasa) integration
-> (no longer available upstream). All credit for the original work goes to
-> [@timniklas](https://github.com/timniklas) and the original contributors.
+> **Community-maintained fork.** This continues the `timniklas/hass-neakasa`
+> integration, which has been removed from GitHub. All credit for the original
+> work goes to @sliwma and @timniklas. This fork was cloned from
+> [`madmartin/hass-neakasa`](https://github.com/madmartin/hass-neakasa), a copy
+> @madmartin preserved after the original was taken down. See
+> [License and attribution](#license-and-attribution) below.
 > Install it via HACS as a **custom repository** (see below) — it is not in the
 > default HACS store.
 
@@ -135,6 +137,21 @@ Use the `Add Integration` button in the bottom right to add a new integration ca
 If you find a problem, feel free to report it and I will do my best to help you.
 If you have something to contribute, your help is greatly appreciated!
 If you want to add a new feature, add a pull request first so we can discuss the details.
+
+## License and attribution
+
+The original work is by **@sliwma** and **@timniklas**. No license was ever
+declared: not in `sliwma/hass-neakasa`, not in the removed `timniklas/hass-neakasa`
+(which this code's `manifest.json` credited for authorship), and not in
+[`madmartin/hass-neakasa`](https://github.com/madmartin/hass-neakasa) — the copy
+@madmartin preserved after the original was taken down, and the copy this fork was
+cloned from. @madmartin is credited for preserving that copy. The code therefore remains
+under the rights of its original authors, with no open-source license granted.
+
+This fork adds bug fixes to keep the integration working after the cloud API
+changed and after the original repository was removed. It claims no rights over
+the code and exists purely for continuity. If you are an original author and want
+this taken down or relicensed, open an issue.
 
 ## Disclaimer
 
